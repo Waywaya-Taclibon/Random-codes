@@ -1,0 +1,130 @@
+const int a = 3;
+const int b = 4; 
+const int c = 7; 
+const int d = 6; 
+const int e = 5; 
+const int f = 2; 
+const int g = 1; 
+const int Az = A3; 
+const int Bz = A2; 
+const int Cz = 9; 
+const int Dz = A0; 
+const int Ez = A1; 
+const int Fz = A4; 
+const int Gz = A5; 
+const int RED_LED = 11;
+const int ORANGE_LED = 12;
+const int GREEN_LED = 13;
+
+void setup()
+{
+  pinMode(a, OUTPUT);
+  pinMode(b, OUTPUT);
+  pinMode(c, OUTPUT);
+  pinMode(d, OUTPUT);
+  pinMode(e, OUTPUT);
+  pinMode(f, OUTPUT);
+  pinMode(g, OUTPUT);
+  pinMode(Az, OUTPUT);
+  pinMode(Bz, OUTPUT);
+  pinMode(Cz, OUTPUT);
+  pinMode(Dz, OUTPUT);
+  pinMode(Ez, OUTPUT);
+  pinMode(Fz, OUTPUT);
+  pinMode(Gz, OUTPUT);
+  pinMode(RED_LED, OUTPUT);
+  pinMode(ORANGE_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+}
+
+void displayDigit(int digit, bool firstDisplay) {
+  if (firstDisplay) {
+    digitalWrite(a, LOW);
+    digitalWrite(b, LOW);
+    digitalWrite(c, LOW);
+    digitalWrite(d, LOW);
+    digitalWrite(e, LOW);
+    digitalWrite(f, LOW);
+    digitalWrite(g, LOW);
+
+    switch (digit) {
+      case 0:
+        digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); digitalWrite(d, HIGH); digitalWrite(e, HIGH); digitalWrite(f, HIGH); break;
+      case 1:
+        digitalWrite(b, HIGH); digitalWrite(c, HIGH); break;
+      case 2:
+        digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(g, HIGH); digitalWrite(e, HIGH); digitalWrite(d, HIGH); break;
+      case 3:
+        digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(g, HIGH); digitalWrite(c, HIGH); digitalWrite(d, HIGH); break;
+      case 4:
+        digitalWrite(f, HIGH); digitalWrite(g, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); break;
+      case 5:
+        digitalWrite(a, HIGH); digitalWrite(f, HIGH); digitalWrite(g, HIGH); digitalWrite(c, HIGH); digitalWrite(d, HIGH); break;
+      case 6:
+        digitalWrite(a, HIGH); digitalWrite(f, HIGH); digitalWrite(g, HIGH); digitalWrite(e, HIGH); digitalWrite(d, HIGH); digitalWrite(c, HIGH); break;
+      case 7:
+        digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); break;
+      case 8:
+        digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); digitalWrite(d, HIGH); digitalWrite(e, HIGH); digitalWrite(f, HIGH); digitalWrite(g, HIGH); break;
+      case 9:
+        digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); digitalWrite(f, HIGH); digitalWrite(g, HIGH); break;
+    }
+  } else {
+    digitalWrite(Az, LOW);
+    digitalWrite(Bz, LOW);
+    digitalWrite(Cz, LOW);
+    digitalWrite(Dz, LOW);
+    digitalWrite(Ez, LOW);
+    digitalWrite(Fz, LOW);
+    digitalWrite(Gz, LOW);
+
+    switch (digit) {
+      case 0:
+        digitalWrite(Az, HIGH); digitalWrite(Bz, HIGH); digitalWrite(Cz, HIGH); digitalWrite(Dz, HIGH); digitalWrite(Ez, HIGH); digitalWrite(Fz, HIGH); break;
+      case 1:
+        digitalWrite(Bz, HIGH); digitalWrite(Cz, HIGH); break;
+      case 2:
+        digitalWrite(Az, HIGH); digitalWrite(Bz, HIGH); digitalWrite(Gz, HIGH); digitalWrite(Ez, HIGH); digitalWrite(Dz, HIGH); break;
+      case 3:
+        digitalWrite(Az, HIGH); digitalWrite(Bz, HIGH); digitalWrite(Gz, HIGH); digitalWrite(Cz, HIGH); digitalWrite(Dz, HIGH); break;
+      case 4:
+        digitalWrite(Fz, HIGH); digitalWrite(Gz, HIGH); digitalWrite(Bz, HIGH); digitalWrite(Cz, HIGH); break;
+      case 5:
+        digitalWrite(Az, HIGH); digitalWrite(Fz, HIGH); digitalWrite(Gz, HIGH); digitalWrite(Cz, HIGH); digitalWrite(Dz, HIGH); break;
+      case 6:
+        digitalWrite(Az, HIGH); digitalWrite(Fz, HIGH); digitalWrite(Gz, HIGH); digitalWrite(Ez, HIGH); digitalWrite(Dz, HIGH); digitalWrite(Cz, HIGH); break;
+      case 7:
+        digitalWrite(Az, HIGH); digitalWrite(Bz, HIGH); digitalWrite(Cz, HIGH); break;
+      case 8:
+        digitalWrite(Az, HIGH); digitalWrite(Bz, HIGH); digitalWrite(Cz, HIGH); digitalWrite(Dz, HIGH); digitalWrite(Ez, HIGH); digitalWrite(Fz, HIGH); digitalWrite(Gz, HIGH); break;
+      case 9:
+        digitalWrite(Az, HIGH); digitalWrite(Bz, HIGH); digitalWrite(Cz, HIGH); digitalWrite(Fz, HIGH); digitalWrite(Gz, HIGH); break;
+    }
+  }
+}
+
+void loop() {
+  digitalWrite(RED_LED, HIGH);
+  for (int i = 25; i >= 0; i--) {
+    displayDigit(i / 10, true);  
+    displayDigit(i % 10, false);
+    delay(1000);
+  }
+  digitalWrite(RED_LED, LOW);
+
+  digitalWrite(GREEN_LED, HIGH);
+  for (int i = 15; i >= 0; i--) {
+    displayDigit(i / 10, true);  
+    displayDigit(i % 10, false); 
+    delay(1000);
+  }
+  digitalWrite(GREEN_LED, LOW);
+
+  digitalWrite(ORANGE_LED, HIGH);
+  for (int i = 3; i >= 0; i--) {
+    displayDigit(i / 10, true);  
+    displayDigit(i % 10, false);
+    delay(1000);
+  }
+  digitalWrite(ORANGE_LED, LOW);
+}
